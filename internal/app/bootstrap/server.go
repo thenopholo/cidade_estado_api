@@ -3,6 +3,8 @@ package bootstrap
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/thenopholo/cidade_estado_api.git/internal/app/handlers/locations"
+	repositories "github.com/thenopholo/cidade_estado_api.git/internal/infrastructure/repositories/location"
 )
 
 func StartServer() {
@@ -18,12 +20,11 @@ func StartServer() {
 }
 
 func configureRoutes(e *gin.Engine) {
+	locationRepository := repositories.NewLocationRepository()
+	locationHandler := locations.NewLocationhanedler(locationRepository)
+
 	g := e.Group("/api/v1")
 	{
-		g.GET("/states", func(c *gin.Context) {
-			c.JSON(200, gin.H{
-				"hello": "World",
-			})
-		})
+		g.GET("/states", locationHandler.GetAllStates)
 	}
 }
