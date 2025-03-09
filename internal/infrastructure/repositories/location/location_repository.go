@@ -57,7 +57,7 @@ func (l *LocationRepository) GetStates() ([]entities.StateEntity, error) {
 	for _, s := range statesResponse {
 		states = append(states, entities.StateEntity{
 			Acronym: s.Sigla,
-			Name:    s.Name,
+			Nome:    s.Name,
 		})
 	}
 

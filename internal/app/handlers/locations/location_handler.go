@@ -28,7 +28,7 @@ func (l *Locationhanedler) GetAllStates(c *gin.Context) {
 	for _, s := range states {
 		statesResponse = append(statesResponse, dto.StateResponse{
 			Acronym: s.Acronym,
-			Name:    s.Name,
+			Nome:    s.Nome,
 		})
 	}
 	c.JSON(200, statesResponse)
